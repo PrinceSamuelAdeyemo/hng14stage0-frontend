@@ -3,8 +3,9 @@
 (function(){
   // Config: a due date that is a few days from now so the example shows "Due in X days" on first load.
   // Using an offset helps tests be tolerant regardless of current date.
-  const DUE_OFFSET_MS = 3 * 24 * 60 * 60 * 1000; // 3 days from now
-  const dueDate = new Date(Date.now() + DUE_OFFSET_MS);
+  // Set due date to April 16, 2026, 11:59 PM GMT+1
+  // Note: JS Date months are 0-based (April = 3)
+  const dueDate = new Date(Date.UTC(2026, 3, 16, 22, 59, 0)); // 22:59 UTC = 23:59 GMT+1
 
   // DOM refs
   const dueEl = document.getElementById('due-date');
@@ -77,12 +78,10 @@
   // Hook up buttons (simple stubs)
   function onEdit(){
     console.log('edit clicked');
-    // human comment: in a real app we'd open an edit form here
-    alert('Edit clicked (this is a stub)');
   }
 
   function onDelete(){
-    // human comment: deletion should ask user for confirmation; keeping it simple for Stage 0
+    // deletion should ask user for confirmation; keeping it simple for Stage 0
     alert('Delete clicked');
   }
 
