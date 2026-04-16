@@ -68,6 +68,88 @@ h2{margin:0;font-size:1.1rem;line-height:1.2}
   .todo-card{padding:14px}
   h2{font-size:1rem}
 }
+@media (max-width:420px){
+  .card-footer{
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 /* Prevent long words from breaking layout */
 .todo-card, .description{word-break:break-word}
+/* Prevent long words from breaking layout */
+.todo-card, .description{word-break:break-word}
+
+/* Priority indicator dot */
+.priority-indicator {
+  display:inline-block;
+  width:14px;height:14px;
+  border-radius:50%;
+  margin-right:6px;
+  vertical-align:middle;
+  border:2px solid #fff;
+  box-shadow:0 1px 2px rgba(0,0,0,0.04);
+  background:#e0e7ef;
+}
+.priority-indicator.low { background:#d1fae5; border-color:#10b981; }
+.priority-indicator.medium { background:#fef08a; border-color:#eab308; }
+.priority-indicator.high { background:#fee2e2; border-color:#dc2626; }
+
+/* Overdue visuals */
+.overdue-indicator, .overdue { color: var(--danger)!important; font-weight:700; }
+.overdue-indicator { background: #fee2e2; border-radius: 6px; padding: 2px 8px; margin-right: 8px; }
+.due.overdue, .remaining.overdue { color: var(--danger)!important; }
+
+/* In Progress visuals */
+.todo-card.in-progress .badge.status { background: #fef9c3; color: #b45309; border-color: #fde68a; }
+.todo-card.in-progress { border-left: 4px solid #eab308; }
+
+/* Expand/collapse section */
+.desc-wrap { position:relative; }
+.expand-toggle {
+  background:transparent;
+  border:none;
+  color:var(--accent);
+  font-weight:600;
+  cursor:pointer;
+  margin-bottom:4px;
+  outline:none;
+}
+.expand-toggle:focus { outline:2px solid var(--accent); outline-offset:2px; }
+.collapsible-section {
+  overflow:hidden;
+  transition:max-height 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+/* Edit mode visuals */
+.todo-card.editing > *:not(.edit-form) { display:none!important; }
+.todo-card.editing .edit-form { display:block!important; }
+.edit-form { background:#f1f5f9; border-radius:8px; padding:14px; margin:0 0 8px 0; }
+.edit-form .form-group { margin-bottom:12px; }
+.edit-form label { display:block; font-size:0.95rem; font-weight:500; margin-bottom:4px; }
+.edit-form input, .edit-form textarea, .edit-form select {
+  width:100%; padding:7px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:1rem; margin-bottom:2px;
+}
+.edit-form textarea { min-height:60px; resize:vertical; }
+.edit-form .form-row { display:flex; gap:10px; }
+.edit-form .form-row .form-group { flex:1; margin-bottom:0; }
+.edit-form .form-actions { display:flex; gap:10px; justify-content:flex-end; }
+.edit-form button { padding:7px 16px; border-radius:6px; border:none; font-weight:600; cursor:pointer; }
+.edit-form [data-testid="test-todo-save-button"] { background:var(--accent); color:#fff; }
+.edit-form [data-testid="test-todo-cancel-button"] { background:#e5e7eb; color:#334155; }
+
+/* Responsive tweaks */
+@media (max-width:420px){
+  .todo-card{padding:10px}
+  h2{font-size:1rem}
+  .edit-form .form-row { flex-direction:column; gap:0; }
+  .edit-form .form-group { margin-bottom:10px; }
+  .edit-form .form-actions { flex-direction:column; gap:6px; }
+}
+@media (max-width:768px){
+  .todo-card{max-width:98vw;}
+  .edit-form .form-row { flex-direction:column; gap:0; }
+}
+@media (min-width:1024px){
+  .edit-form .form-row { flex-direction:row; gap:10px; }
+}
